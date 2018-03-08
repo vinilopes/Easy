@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="easydbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="candidatos">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="skype" Type="varchar" MaxLength="80" />
+          <Property Name="telefone" Type="varchar" MaxLength="50" />
+          <Property Name="linkedin" Type="varchar" MaxLength="50" />
+          <Property Name="estado" Type="varchar" MaxLength="50" />
+          <Property Name="cidade" Type="varchar" MaxLength="50" />
+          <Property Name="portfolio" Type="varchar" MaxLength="50" />
+          <Property Name="disponibilidade" Type="int" />
+          <Property Name="horario" Type="int" />
+          <Property Name="salario" Type="float" />
+          <Property Name="informacao_bancaria" Type="varchar" MaxLength="200" />
+          <Property Name="conta_nome" Type="varchar" MaxLength="100" />
+          <Property Name="cpf" Type="varchar" MaxLength="15" />
+          <Property Name="banco_nome" Type="varchar" MaxLength="50" />
+          <Property Name="agencia" Type="varchar" MaxLength="50" />
+          <Property Name="conta" Type="varchar" MaxLength="50" />
+          <Property Name="tipo_conta_corrente" Type="int" />
+          <Property Name="tipo_conta_poupanca" Type="int" />
+          <Property Name="ionic" Type="int" />
+          <Property Name="android" Type="int" />
+          <Property Name="ios" Type="int" />
+          <Property Name="html" Type="int" />
+          <Property Name="css" Type="int" />
+          <Property Name="bootstrap" Type="int" />
+          <Property Name="jquery" Type="int" />
+          <Property Name="angularjs" Type="int" />
+          <Property Name="java" Type="int" />
+          <Property Name="aspnet_mvc" Type="int" />
+          <Property Name="c" Type="int" />
+          <Property Name="c_plusplus" Type="int" />
+          <Property Name="cake" Type="int" />
+          <Property Name="django" Type="int" />
+          <Property Name="majento" Type="int" />
+          <Property Name="php" Type="int" />
+          <Property Name="vue" Type="int" />
+          <Property Name="wordpress" Type="int" />
+          <Property Name="phyton" Type="int" />
+          <Property Name="ruby" Type="int" />
+          <Property Name="sql_server" Type="int" />
+          <Property Name="my_sql" Type="int" />
+          <Property Name="salesforce" Type="int" />
+          <Property Name="photoshop" Type="int" />
+          <Property Name="illustrator" Type="int" />
+          <Property Name="seo" Type="int" />
+          <Property Name="crud" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityContainer Name="easydbModelStoreContainer">
+          <EntitySet Name="candidatos" EntityType="Self.candidatos" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="easydbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="candidato">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="skype" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="linkedin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cidade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="portfolio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="disponibilidade" Type="Int32" />
+          <Property Name="horario" Type="Int32" />
+          <Property Name="salario" Type="Double" />
+          <Property Name="informacao_bancaria" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="conta_nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cpf" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="banco_nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="agencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="conta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_conta_corrente" Type="Int32" />
+          <Property Name="tipo_conta_poupanca" Type="Int32" />
+          <Property Name="ionic" Type="Int32" />
+          <Property Name="android" Type="Int32" />
+          <Property Name="ios" Type="Int32" />
+          <Property Name="html" Type="Int32" />
+          <Property Name="css" Type="Int32" />
+          <Property Name="bootstrap" Type="Int32" />
+          <Property Name="jquery" Type="Int32" />
+          <Property Name="angularjs" Type="Int32" />
+          <Property Name="java" Type="Int32" />
+          <Property Name="aspnet_mvc" Type="Int32" />
+          <Property Name="c" Type="Int32" />
+          <Property Name="c_plusplus" Type="Int32" />
+          <Property Name="cake" Type="Int32" />
+          <Property Name="django" Type="Int32" />
+          <Property Name="majento" Type="Int32" />
+          <Property Name="php" Type="Int32" />
+          <Property Name="vue" Type="Int32" />
+          <Property Name="wordpress" Type="Int32" />
+          <Property Name="phyton" Type="Int32" />
+          <Property Name="ruby" Type="Int32" />
+          <Property Name="sql_server" Type="Int32" />
+          <Property Name="my_sql" Type="Int32" />
+          <Property Name="salesforce" Type="Int32" />
+          <Property Name="photoshop" Type="Int32" />
+          <Property Name="illustrator" Type="Int32" />
+          <Property Name="seo" Type="Int32" />
+          <Property Name="crud" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="easydbEntitiesModel" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="candidatos" EntityType="Self.candidato" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="easydbModelStoreContainer" CdmEntityContainer="easydbEntitiesModel">
+          <EntitySetMapping Name="candidatos">
+            <EntityTypeMapping TypeName="easydbModel.candidato">
+              <MappingFragment StoreEntitySet="candidatos">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="skype" ColumnName="skype" />
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="linkedin" ColumnName="linkedin" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="cidade" ColumnName="cidade" />
+                <ScalarProperty Name="portfolio" ColumnName="portfolio" />
+                <ScalarProperty Name="disponibilidade" ColumnName="disponibilidade" />
+                <ScalarProperty Name="horario" ColumnName="horario" />
+                <ScalarProperty Name="salario" ColumnName="salario" />
+                <ScalarProperty Name="informacao_bancaria" ColumnName="informacao_bancaria" />
+                <ScalarProperty Name="conta_nome" ColumnName="conta_nome" />
+                <ScalarProperty Name="cpf" ColumnName="cpf" />
+                <ScalarProperty Name="banco_nome" ColumnName="banco_nome" />
+                <ScalarProperty Name="agencia" ColumnName="agencia" />
+                <ScalarProperty Name="conta" ColumnName="conta" />
+                <ScalarProperty Name="tipo_conta_corrente" ColumnName="tipo_conta_corrente" />
+                <ScalarProperty Name="tipo_conta_poupanca" ColumnName="tipo_conta_poupanca" />
+                <ScalarProperty Name="ionic" ColumnName="ionic" />
+                <ScalarProperty Name="android" ColumnName="android" />
+                <ScalarProperty Name="ios" ColumnName="ios" />
+                <ScalarProperty Name="html" ColumnName="html" />
+                <ScalarProperty Name="css" ColumnName="css" />
+                <ScalarProperty Name="bootstrap" ColumnName="bootstrap" />
+                <ScalarProperty Name="jquery" ColumnName="jquery" />
+                <ScalarProperty Name="angularjs" ColumnName="angularjs" />
+                <ScalarProperty Name="java" ColumnName="java" />
+                <ScalarProperty Name="aspnet_mvc" ColumnName="aspnet_mvc" />
+                <ScalarProperty Name="c" ColumnName="c" />
+                <ScalarProperty Name="c_plusplus" ColumnName="c_plusplus" />
+                <ScalarProperty Name="cake" ColumnName="cake" />
+                <ScalarProperty Name="django" ColumnName="django" />
+                <ScalarProperty Name="majento" ColumnName="majento" />
+                <ScalarProperty Name="php" ColumnName="php" />
+                <ScalarProperty Name="vue" ColumnName="vue" />
+                <ScalarProperty Name="wordpress" ColumnName="wordpress" />
+                <ScalarProperty Name="phyton" ColumnName="phyton" />
+                <ScalarProperty Name="ruby" ColumnName="ruby" />
+                <ScalarProperty Name="sql_server" ColumnName="sql_server" />
+                <ScalarProperty Name="my_sql" ColumnName="my_sql" />
+                <ScalarProperty Name="salesforce" ColumnName="salesforce" />
+                <ScalarProperty Name="photoshop" ColumnName="photoshop" />
+                <ScalarProperty Name="illustrator" ColumnName="illustrator" />
+                <ScalarProperty Name="seo" ColumnName="seo" />
+                <ScalarProperty Name="crud" ColumnName="crud" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

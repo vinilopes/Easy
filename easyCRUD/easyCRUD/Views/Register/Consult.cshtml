@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/AngularScript.js"></script>
+
+<style>
+    .btn-space {
+        margin-left: -5%;
+        background-color: cornflowerblue;
+        font-size: large;
+    }
+</style>
+<h2>Talentos cadastrados</h2>
+<div ng-app="myApp">
+    <div ng-controller="myCtrl" ng-init="GetAllData()" class="divList">
+        <div class="container">
+        <table  class="table table-collapse-phone">
+            <tr>
+                <td>
+                    <b>#</b>
+                </td>
+                <td>
+                    <b>Nome</b>
+                </td>
+                <td>
+                    <b>Email</b>
+                </td>
+                <td>
+                    <b>Skype</b>
+                </td>
+                <td>
+                    <b>Telefone</b>
+                </td>
+                <td>
+                    <b>Ações</b>
+                </td>
+
+            </tr>
+            <tr ng-repeat="Cand in candidatos">
+                <td>{{Cand.codigo}}</td>
+                <td>{{Cand.email}}</td>
+                <td>{{Cand.nome}}</td>
+                <td>{{Cand.skype}}</td>
+                <td>{{Cand.telefone}}</td>
+                <td>
+                    <input type="button" class="btn btn-success" value="Consulta completa" ng-click="consultCandidate(Cand)" />
+                    <input type="button" class="btn btn-warning" value="Update" ng-click="UpdateEmp(Emp)" />
+                    <input type="button" class="btn btn-danger" value="Delete" ng-click="DeleteCandidate(Cand)" />
+                </td>
+            </tr>
+        </table>
+       
+    </div>
+    @Html.Hidden("EmpID_")
+
+</div>

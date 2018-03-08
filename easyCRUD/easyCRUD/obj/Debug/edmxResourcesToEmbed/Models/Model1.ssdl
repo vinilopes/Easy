@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="easydbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="candidatos">
+    <Key>
+      <PropertyRef Name="codigo" />
+    </Key>
+    <Property Name="codigo" Type="int" Nullable="false" />
+    <Property Name="nome" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="skype" Type="varchar" MaxLength="80" />
+    <Property Name="telefone" Type="varchar" MaxLength="50" />
+    <Property Name="linkedin" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="varchar" MaxLength="50" />
+    <Property Name="cidade" Type="varchar" MaxLength="50" />
+    <Property Name="portfolio" Type="varchar" MaxLength="50" />
+    <Property Name="disponibilidade" Type="int" />
+    <Property Name="horario" Type="int" />
+    <Property Name="salario" Type="float" />
+    <Property Name="informacao_bancaria" Type="varchar" MaxLength="200" />
+    <Property Name="conta_nome" Type="varchar" MaxLength="100" />
+    <Property Name="cpf" Type="varchar" MaxLength="15" />
+    <Property Name="banco_nome" Type="varchar" MaxLength="50" />
+    <Property Name="agencia" Type="varchar" MaxLength="50" />
+    <Property Name="conta" Type="varchar" MaxLength="50" />
+    <Property Name="tipo_conta_corrente" Type="int" />
+    <Property Name="tipo_conta_poupanca" Type="int" />
+    <Property Name="ionic" Type="int" />
+    <Property Name="android" Type="int" />
+    <Property Name="ios" Type="int" />
+    <Property Name="html" Type="int" />
+    <Property Name="css" Type="int" />
+    <Property Name="bootstrap" Type="int" />
+    <Property Name="jquery" Type="int" />
+    <Property Name="angularjs" Type="int" />
+    <Property Name="java" Type="int" />
+    <Property Name="aspnet_mvc" Type="int" />
+    <Property Name="c" Type="int" />
+    <Property Name="c_plusplus" Type="int" />
+    <Property Name="cake" Type="int" />
+    <Property Name="django" Type="int" />
+    <Property Name="majento" Type="int" />
+    <Property Name="php" Type="int" />
+    <Property Name="vue" Type="int" />
+    <Property Name="wordpress" Type="int" />
+    <Property Name="phyton" Type="int" />
+    <Property Name="ruby" Type="int" />
+    <Property Name="sql_server" Type="int" />
+    <Property Name="my_sql" Type="int" />
+    <Property Name="salesforce" Type="int" />
+    <Property Name="photoshop" Type="int" />
+    <Property Name="illustrator" Type="int" />
+    <Property Name="seo" Type="int" />
+    <Property Name="crud" Type="varchar" MaxLength="150" />
+  </EntityType>
+  <EntityContainer Name="easydbModelStoreContainer">
+    <EntitySet Name="candidatos" EntityType="Self.candidatos" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

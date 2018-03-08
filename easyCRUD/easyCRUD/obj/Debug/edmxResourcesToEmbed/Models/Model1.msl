@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="easydbModelStoreContainer" CdmEntityContainer="easydbEntitiesModel">
+    <EntitySetMapping Name="candidatos">
+      <EntityTypeMapping TypeName="easydbModel.candidato">
+        <MappingFragment StoreEntitySet="candidatos">
+          <ScalarProperty Name="codigo" ColumnName="codigo" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="skype" ColumnName="skype" />
+          <ScalarProperty Name="telefone" ColumnName="telefone" />
+          <ScalarProperty Name="linkedin" ColumnName="linkedin" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="cidade" ColumnName="cidade" />
+          <ScalarProperty Name="portfolio" ColumnName="portfolio" />
+          <ScalarProperty Name="disponibilidade" ColumnName="disponibilidade" />
+          <ScalarProperty Name="horario" ColumnName="horario" />
+          <ScalarProperty Name="salario" ColumnName="salario" />
+          <ScalarProperty Name="informacao_bancaria" ColumnName="informacao_bancaria" />
+          <ScalarProperty Name="conta_nome" ColumnName="conta_nome" />
+          <ScalarProperty Name="cpf" ColumnName="cpf" />
+          <ScalarProperty Name="banco_nome" ColumnName="banco_nome" />
+          <ScalarProperty Name="agencia" ColumnName="agencia" />
+          <ScalarProperty Name="conta" ColumnName="conta" />
+          <ScalarProperty Name="tipo_conta_corrente" ColumnName="tipo_conta_corrente" />
+          <ScalarProperty Name="tipo_conta_poupanca" ColumnName="tipo_conta_poupanca" />
+          <ScalarProperty Name="ionic" ColumnName="ionic" />
+          <ScalarProperty Name="android" ColumnName="android" />
+          <ScalarProperty Name="ios" ColumnName="ios" />
+          <ScalarProperty Name="html" ColumnName="html" />
+          <ScalarProperty Name="css" ColumnName="css" />
+          <ScalarProperty Name="bootstrap" ColumnName="bootstrap" />
+          <ScalarProperty Name="jquery" ColumnName="jquery" />
+          <ScalarProperty Name="angularjs" ColumnName="angularjs" />
+          <ScalarProperty Name="java" ColumnName="java" />
+          <ScalarProperty Name="aspnet_mvc" ColumnName="aspnet_mvc" />
+          <ScalarProperty Name="c" ColumnName="c" />
+          <ScalarProperty Name="c_plusplus" ColumnName="c_plusplus" />
+          <ScalarProperty Name="cake" ColumnName="cake" />
+          <ScalarProperty Name="django" ColumnName="django" />
+          <ScalarProperty Name="majento" ColumnName="majento" />
+          <ScalarProperty Name="php" ColumnName="php" />
+          <ScalarProperty Name="vue" ColumnName="vue" />
+          <ScalarProperty Name="wordpress" ColumnName="wordpress" />
+          <ScalarProperty Name="phyton" ColumnName="phyton" />
+          <ScalarProperty Name="ruby" ColumnName="ruby" />
+          <ScalarProperty Name="sql_server" ColumnName="sql_server" />
+          <ScalarProperty Name="my_sql" ColumnName="my_sql" />
+          <ScalarProperty Name="salesforce" ColumnName="salesforce" />
+          <ScalarProperty Name="photoshop" ColumnName="photoshop" />
+          <ScalarProperty Name="illustrator" ColumnName="illustrator" />
+          <ScalarProperty Name="seo" ColumnName="seo" />
+          <ScalarProperty Name="crud" ColumnName="crud" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="easydbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="candidato">
+    <Key>
+      <PropertyRef Name="codigo" />
+    </Key>
+    <Property Name="codigo" Type="Int32" Nullable="false" />
+    <Property Name="nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="skype" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="linkedin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="cidade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="portfolio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="disponibilidade" Type="Int32" />
+    <Property Name="horario" Type="Int32" />
+    <Property Name="salario" Type="Double" />
+    <Property Name="informacao_bancaria" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="conta_nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="cpf" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="banco_nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="agencia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="conta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tipo_conta_corrente" Type="Int32" />
+    <Property Name="tipo_conta_poupanca" Type="Int32" />
+    <Property Name="ionic" Type="Int32" />
+    <Property Name="android" Type="Int32" />
+    <Property Name="ios" Type="Int32" />
+    <Property Name="html" Type="Int32" />
+    <Property Name="css" Type="Int32" />
+    <Property Name="bootstrap" Type="Int32" />
+    <Property Name="jquery" Type="Int32" />
+    <Property Name="angularjs" Type="Int32" />
+    <Property Name="java" Type="Int32" />
+    <Property Name="aspnet_mvc" Type="Int32" />
+    <Property Name="c" Type="Int32" />
+    <Property Name="c_plusplus" Type="Int32" />
+    <Property Name="cake" Type="Int32" />
+    <Property Name="django" Type="Int32" />
+    <Property Name="majento" Type="Int32" />
+    <Property Name="php" Type="Int32" />
+    <Property Name="vue" Type="Int32" />
+    <Property Name="wordpress" Type="Int32" />
+    <Property Name="phyton" Type="Int32" />
+    <Property Name="ruby" Type="Int32" />
+    <Property Name="sql_server" Type="Int32" />
+    <Property Name="my_sql" Type="Int32" />
+    <Property Name="salesforce" Type="Int32" />
+    <Property Name="photoshop" Type="Int32" />
+    <Property Name="illustrator" Type="Int32" />
+    <Property Name="seo" Type="Int32" />
+    <Property Name="crud" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="easydbEntitiesModel" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="candidatos" EntityType="Self.candidato" />
+  </EntityContainer>
+</Schema>

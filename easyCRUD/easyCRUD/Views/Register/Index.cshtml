@@ -1,0 +1,793 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/AngularScript.js"></script>
+
+<div ng-app="myApp">
+    <div ng-controller="myCtrl" ng-init="GetAllData()" class="divList">
+        <div class="jumbotron">
+            <div class="container instructions">
+                <h2 class="display-3">Banco de Talentos - Easy </h2>
+                <p><a href="https://youtu.be/teXgoCzunVE">https://youtu.be/teXgoCzunVE</a> </p>
+                <p>We appreciate your contact, check that you do not need to fill out the full form if already has this information on its linkedin, and check out the links at the end of the tutorials (developers).</p>
+                <p>Já agradecemos o seu contato, confira que você não precisa preencher o formulário completo caso já tenha essas informações no seu linkedin, e no final confira os links dos tutoriais (desenvolvedores).</p>
+                <p>How we work / Como trabalhamos: <a href="https://docs.google.com/document/d/145QuJ8-efr-pmNGV-2DOOGHD-1dc3MERSeL5g0XoqmM">Link</a></p>
+                <div class="text-center">
+                    <p><a href="#"   data-target="#ModalTalent"   data-toggle="modal" class="btn btn-success"   ng-click="resetAllData();modal();">Cadastre-se</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center"><h1>Talentos</h1></div>
+        <div style="float:right">
+            <select id="inputState" class="form-control" ng-model="selectedItem" ng-change="selectedFilter()">
+                <option  ng-value="1" selected>Nome</option>
+                <option  ng-value="2" >Valor hora</option>
+            </select>
+        </div>
+        <div class="form-horizontal" role="form">
+            <div class="container">
+                <div class="row">
+                    <table class="table table-collapse-phone">
+                        <tr>
+                            <td>
+                                <b>#</b>
+                            </td>
+                            <td>
+                                <b>Nome</b>
+                            </td>
+                            <td>
+                                <b>Email</b>
+                            </td>
+                            <td>
+                                <b>Skype</b>
+                            </td>
+                            <td>
+                                <b>Telefone</b>
+                            </td>
+                            <td>
+                                <b>Ações</b>
+                            </td>
+
+                        </tr>
+                        <tr ng-repeat="Cand in candidatos">
+                            <td>{{Cand.codigo}}</td>
+                            <td>{{Cand.nome}}</td>
+                            <td>{{Cand.email}}</td>
+                            <td>{{Cand.skype}}</td>
+                            <td>{{Cand.telefone}}</td>
+                            <td>
+                                <button type="submit" class="btn btn-primary"  data-target="#ModalTalent" data-toggle="modal" ng-click="ConsultCandidate(Cand)">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                                <button type="submit" class="btn btn-success" data-target="#ModalTalent" data-toggle="modal" ng-click="UpdateCandidate(Cand)">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                                <button type="submit" class="btn btn-danger"   ng-click="DeleteCandidate(Cand)">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                
+                
+                <div class="modal" id="ModalTalent" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="text-info ">{{formName}}</h3>
+                            </div>
+                            <div class="modal-body" style="margin-left: 20px;margin-right:20px;">
+
+                                    
+                                        <form ng-submit="InsertData()" >
+                                            <div class="form-group " >
+                                                <label for="email">Endereço de e-mail *</label>
+                                                <input type="text" class="form-control" id="inputEmail" placeholder="Name"  ng-disabled="consult" ng-model="candidateEmail" ng-required="true">
+                                                <label for="name">Nome/Name *</label>
+                                                <input type="text" class="form-control" id="inputName" placeholder="Nome" ng-disabled="consult" ng-model="candidateName" required>
+                                                <label for="name">Skype *</label>
+                                                <input type="text" class="form-control" id="inputSkype" placeholder="Skype"  ng-disabled="consult" ng-model="candidateSkype" required>
+                                                <label for="phone"> Telefone/Phone (Whatsapp) *</label>
+                                                <input type="text" class="form-control" id="inputPhone" placeholder="Telefone" ng-disabled="consult" ng-model="candidatePhone" required>
+                                                <label for="linkedin">Linkedin:</label>
+                                                <input type="text" class="form-control" id="inputLinkedin" placeholder="link" ng-disabled="consult" ng-model="candidateLinkedin">
+                                                <label for="city">Cidade / City *</label>
+                                                <input type="text" class="form-control" id="inputCity" placeholder="Cidade"  ng-disabled="consult" ng-model="candidateCity" required>
+                                                <label for="city">Estado/ State *</label>
+                                                <input type="text" class="form-control" id="inputState" placeholder="Estado" ng-disabled="consult" ng-model="candidateState" required>
+                                                <label for="portfolio">Portfólio:</label>
+                                                <input type="text" class="form-control" id="inputPortfolio" placeholder="Portfólio"  ng-disabled="consult" ng-model="candidatePortfolio">
+                                                <label for="disponibility">What is your willingness to work today? / Qual é sua disponibilidade para trabalhar hoje? *</label>
+                                                <div class="radiosop">
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="optionsRadiosDisponibility" id="optionsRadiosDisponibility" ng-disabled="consult" ng-model="optionsRadiosDisponibility" ng-value="1" required>
+                                                            Up to 4 hours per day / Até 4 horas por dia
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="optionsRadiosDisponibility" id="optionsRadiosDisponibility" ng-disabled="consult" ng-model="optionsRadiosDisponibility" ng-value="2" required>
+                                                            4 to 6 hours per day / De 4 á 6 horas por dia
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="optionsRadiosDisponibility" id="optionsRadiosDisponibility"  ng-disabled="consult" ng-model="optionsRadiosDisponibility" ng-value="3" required>
+                                                            6 to 8 hours per day /De 6 á 8 horas por dia
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="optionsRadiosDisponibility" id="optionsRadiosDisponibility" ng-disabled="consult" ng-model="optionsRadiosDisponibility" ng-value="4" required>
+                                                            Up to 8 hours a day (are you sure?) / Acima de 8 horas por dia (tem certeza?)
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="optionsRadiosDisponibility" id="optionsRadiosDisponibility" ng-disabled="consult" ng-model="optionsRadiosDisponibility" ng-value="5" required>
+                                                            Only weekends / Apenas finais de semana
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <label for="time">What's the best time to work for you? / Pra você qual é o melhor horário para trabalhar? *</label>
+                                                <div class="radiosop">
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="optionsRadiosTime" id="optionsRadios1" ng-disabled="consult" ng-model="optionsRadiosTime" ng-value="1" required>
+                                                            Morning (from 08:00 to 12:00) / Manhã (de 08:00 ás 12:00)
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="optionsRadiosTime" id="optionsRadios2"  ng-disabled="consult" ng-model="optionsRadiosTime" ng-value="2" required>
+                                                            Night (7:00 p.m. to 10:00 p.m.) /Noite (de 19:00 as 22:00)
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="optionsRadiosTime" id="optionsRadios3" ng-disabled="consult" ng-model="optionsRadiosTime" ng-value="3" required>
+                                                            Dawn (from 10 p.m. onwards) / Madrugada (de 22:00 em diante)
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input type="radio" name="optionsRadiosTime" id="optionsRadios4" ng-disabled="consult" ng-model="optionsRadiosTime" ng-value="4" required>
+                                                            Business (from 08:00 a.m. to 06:00 p.m.) / Comercial (de 08:00 as 18:00)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <label for="salary">What is your hourly salary requirements? / Qual sua pretensão salarial por hora? *</label>
+                                                <input type="number" class="form-control" id="inputSalary" placeholder="" ng-disabled="consult" ng-model="candidateSalary" required>
+                                                <label for="bankInformation">Bank Information / Paypal / Itau etc</label><label> Banco brasileiro precisa: Nome, CPF, Banco, Agencia, Conta Corrente ou Poupanca</label>
+                                                <input type="text" class="form-control" id="inputBankInformation" placeholder="" ng-disabled="consult" ng-model="candidateBankInformation">
+
+                                                <label for="bank">Nome</label>
+                                                <input type="text" class="form-control" id="inputBankNameAccount" placeholder="Nome" ng-disabled="consult" ng-model="candidateBankNameAccount">
+
+                                                <label for="cpf">Only for Brazilians / CPF</label>
+                                                <input type="text" class="form-control" id="inputCpf" placeholder="CPF" ng-disabled="consult" ng-model="candidateCpf">
+
+                                                <label for="bank">Bank / Banco ( Itau, Bradesco, ect..)</label>
+                                                <input type="text" class="form-control" id="inputBankName" placeholder="Nome" ng-disabled="consult" ng-model="candidateBankName">
+
+                                                <label for="agency">Agency / Agencia</label>
+                                                <input type="text" class="form-control" id="inputAgency" placeholder="Agencia" ng-disabled="consult" ng-model="candidateAgency">
+
+                                                <label for="agency">Account Type / Tipo de contaa</label>
+                                                <div class="radiosop">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="candidateTypeAcconuntChain" ng-disabled="consult" ng-true-value="1" ng-false-value="0" ng-value="1">
+                                                            Chain / Corrente
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox ">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="candidateTypeAcconuntSavings" ng-disabled="consult" ng-true-value="1" ng-false-value="0" ng-value="1">
+                                                            Savings / Poupança
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <label for="account">Account Number / Número da conta</label>
+                                                <input type="text" class="form-control" id="inputAccount" placeholder="X.XXXX.XX-XX" ng-disabled="consult" ng-model="candidateAccount">
+
+                                                <table style="border: 1px solid transparent">
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">Ionic *</label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineRadioIonic" id="inlineRadioIonic1" ng-disabled="consult" ng-model="candidateIonic" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineRadioIonic" id="inlineRadioIonic2" ng-disabled="consult" ng-model="candidateIonic" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineRadioIonic" id="inlineRadioIonic3" ng-disabled="consult" ng-model="candidateIonic" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineRadioIonic" id="inlineRadioIonic4" ng-disabled="consult" ng-model="candidateIonic" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineRadioIonic" id="inlineRadioIonic5" ng-disabled="consult" ng-model="candidateIonic" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    <tr />
+
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">Android *</label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineAndroid" id="inlineAndroid1" ng-disabled="consult" ng-model="candidateAndroid" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineAndroid" id="inlineAndroid2" ng-disabled="consult" ng-model="candidateAndroid" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineAndroid" id="inlineAndroid3" ng-disabled="consult" ng-model="candidateAndroid" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineAndroid" id="inlineAndroid4" ng-disabled="consult" ng-model="candidateAndroid" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineAndroid" id="inlineAndroid5" ng-disabled="consult" ng-model="candidateAndroid" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                        <td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">IOS * </label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineIOS" id="inlineIOS1" ng-disabled="consult" ng-model="candidateIOS" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineIOS" id="inlineIOS2" ng-disabled="consult" ng-model="candidateIOS" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineIOS" id="inlineIOS3" ng-disabled="consult" ng-model="candidateIOS" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineIOS" id="inlineIOS4" ng-disabled="consult" ng-model="candidateIOS" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineIOS" id="inlineIOS5" ng-disabled="consult" ng-model="candidateIOS" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                        <td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">HTML * </label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineHTML" id="inlineHTML1" ng-disabled="consult" ng-model="candidateHTML" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineHTML" id="inlineHTML2" ng-disabled="consult" ng-model="candidateHTML" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineHTML" id="inlineHTML3" ng-disabled="consult" ng-model="candidateHTML" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineHTML" id="inlineHTML4" ng-disabled="consult" ng-model="candidateHTML" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineHTML" id="inlineHTML5" ng-disabled="consult" ng-model="candidateHTML" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">CSS * </label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlinecss" id="inlinecss1" ng-disabled="consult" ng-model="candidateCss" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlinecss" id="inlinecss2" ng-disabled="consult" ng-model="candidateCss" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlinecss" id="inlinecss3" ng-disabled="consult" ng-model="candidateCss" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlinecss" id="inlinecss4" ng-disabled="consult" ng-model="candidateCss" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlinecss" id="inlinecss5" ng-disabled="consult" ng-model="candidateCss" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">Bootstrap * </label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineBootstrap" id="inlineBootstrap1" ng-disabled="consult" ng-model="candidateBootstrap" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineBootstrap" id="inlineBootstrap2" ng-disabled="consult" ng-model="candidateBootstrap" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineBootstrap" id="inlineBootstrap3" ng-disabled="consult" ng-model="candidateBootstrap" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineBootstrap" id="inlineBootstrap4" ng-disabled="consult" ng-model="candidateBootstrap" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineBootstrap" id="inlineBootstrap5" ng-disabled="consult" ng-model="candidateBootstrap" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">Jquery * </label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineJquery" id="inlineJquery1" ng-disabled="consult" ng-model="candidateJquery" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineJquery" id="inlineJquery2" ng-disabled="consult" ng-model="candidateJquery" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineJquery" id="inlineJquery3" ng-disabled="consult" ng-model="candidateJquery" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineJquery" id="inlineJquery4" ng-disabled="consult" ng-model="candidateJquery" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineJquery" id="inlineJquery5" ng-disabled="consult" ng-model="candidateJquery" ng-value="5"> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">AngularJs * </label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineAngularJs" id="inlineAngularJs1" ng-disabled="consult" ng-model="candidateAngularJs" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineAngularJs" id="inlineAngularJs2" ng-disabled="consult" ng-model="candidateAngularJs" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineAngularJs" id="inlineAngularJs3" ng-disabled="consult" ng-model="candidateAngularJs" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineAngularJs" id="inlineAngularJs4" ng-disabled="consult" ng-model="candidateAngularJs" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineAngularJs" id="inlineAngularJs5" ng-disabled="consult" ng-model="candidateAngularJs" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">Java * </label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineJava" id="inlineJava1" ng-disabled="consult" ng-model="candidateJava" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineJava" id="inlineJava2" ng-disabled="consult" ng-model="candidateJava" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineJava" id="inlineJava3" ng-disabled="consult" ng-model="candidateJava" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineJava" id="inlineJava4" ng-disabled="consult" ng-model="candidateJava" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineJava" id="inlineJava5" ng-disabled="consult" ng-model="candidateJava" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">Asp.Net MVC * </label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineAsp" id="inlineAsp1" ng-disabled="consult" ng-model="candidateAsp" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineAsp" id="inlineAsp2" ng-disabled="consult" ng-model="candidateAsp" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineAsp" id="inlineAsp3" ng-disabled="consult" ng-model="candidateAsp" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineAsp" id="inlineAsp4" ng-disabled="consult" ng-model="candidateAsp" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineAsp" id="inlineAsp5" ng-disabled="consult" ng-model="candidateAsp" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">C *</label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineC" id="inlineC1" ng-disabled="consult" ng-model="candidateC" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineC" id="inlineC2" ng-disabled="consult" ng-model="candidateC" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineC" id="inlineC3" ng-disabled="consult" ng-model="candidateC" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineC" id="inlineC4" ng-disabled="consult" ng-model="candidateC" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineC" id="inlineC5" ng-disabled="consult" ng-model="candidateC" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">C++ *</label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineCPlusPlus" id="inlineCPlusPlus1" ng-disabled="consult" ng-model="candidateCPlusPlus" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineCPlusPlus" id="inlineCPlusPlus2"  ng-disabled="consult" ng-model="candidateCPlusPlus" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineCPlusPlus" id="inlineCPlusPlus3" ng-disabled="consult" ng-model="candidateCPlusPlus" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineCPlusPlus" id="inlineCPlusPlus4" ng-disabled="consult" ng-model="candidateCPlusPlus" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineCPlusPlus" id="inlineCPlusPlus5" ng-disabled="consult" ng-model="candidateCPlusPlus" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">Cake *</label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineCake" id="inlineCake1" ng-disabled="consult" ng-model="candidateCake" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineCake" id="inlineCake2" ng-disabled="consult" ng-model="candidateCake" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineCake" id="inlineCake3" ng-disabled="consult" ng-model="candidateCake" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineCake" id="inlineCake4" ng-disabled="consult" ng-model="candidateCake" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineCake" id="inlineCake5" ng-disabled="consult" ng-model="candidateCake" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">Django *</label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineDjango" id="inlineDjango1" ng-disabled="consult" ng-model="candidateDjango" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineDjango" id="inlineDjango2" ng-disabled="consult" ng-model="candidateDjango" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineDjango" id="inlineDjango3" ng-disabled="consult" ng-model="candidateDjango" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineDjango" id="inlineDjango4" ng-disabled="consult" ng-model="candidateDjango" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineDjango" id="inlineDjango5" ng-disabled="consult" ng-model="candidateDjango" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">Majento *</label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineMajento" id="inlineMajento1" ng-disabled="consult" ng-model="candidateMajento" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineMajento" id="inlineMajento2" ng-disabled="consult" ng-model="candidateMajento" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineMajento" id="inlineMajento3" ng-disabled="consult" ng-model="candidateMajento" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineMajento" id="inlineMajento4" ng-disabled="consult" ng-model="candidateMajento" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineMajento" id="inlineMajento5" ng-disabled="consult" ng-model="candidateMajento" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">PHP *</label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlinePHP" id="inlinePHP1" ng-disabled="consult" ng-model="candidatePHP" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlinePHP" id="inlinePHP2"  ng-disabled="consult" ng-model="candidatePHP" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlinePHP" id="inlinePHP3" ng-disabled="consult" ng-model="candidatePHP" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlinePHP" id="inlinePHP4" ng-disabled="consult" ng-model="candidatePHP" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlinePHP" id="inlinePHP5" ng-disabled="consult" ng-model="candidatePHP" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">Vue *</label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineVue" id="inlineVue1" ng-disabled="consult" ng-model="candidateVue" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineVue" id="inlineVue2" ng-disabled="consult" ng-model="candidateVue" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineVue" id="inlineVue3" ng-disabled="consult" ng-model="candidateVue" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineVue" id="inlineVue4" ng-disabled="consult" ng-model="candidateVue" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineVue" id="inlineVue5" ng-disabled="consult" ng-model="candidateVue" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">Wordpress *</label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineWordpress" id="inlineWordpress1" ng-disabled="consult" ng-model="candidateWordpress" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineWordpress" id="inlineWordpress2" ng-disabled="consult" ng-model="candidateWordpress" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineWordpress" id="inlineWordpress3" ng-disabled="consult" ng-model="candidateWordpress" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineWordpress" id="inlineWordpress4" ng-disabled="consult" ng-model="candidateWordpress" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineWordpress" id="inlineWordpress5" ng-disabled="consult" ng-model="candidateWordpress" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">Phyton *</label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlinePhyton" id="inlinePhyton1" ng-disabled="consult" ng-model="candidatePhyton" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlinePhyton" id="inlinePhyton2" ng-disabled="consult" ng-model="candidatePhyton" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlinePhyton" id="inlinePhyton3" ng-disabled="consult" ng-model="candidatePhyton" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlinePhyton" id="inlinePhyton4" ng-disabled="consult" ng-model="candidatePhyton" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlinePhyton" id="inlinePhyton5" ng-disabled="consult" ng-model="candidatePhyton" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">Ruby *</label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineRuby" id="inlineRuby1" ng-disabled="consult" ng-model="candidateRuby" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineRuby" id="inlineRuby2" ng-disabled="consult" ng-model="candidateRuby" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineRuby" id="inlineRuby3" ng-disabled="consult" ng-model="candidateRuby" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineRuby" id="inlineRuby4" ng-disabled="consult" ng-model="candidateRuby" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineRuby" id="inlineRuby5" ng-disabled="consult" ng-model="candidateRuby" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">My SQL Server *</label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineSqlServer" id="inlineSqlServer1" ng-disabled="consult" ng-model="candidateSqlServer" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineSqlServer" id="inlineSqlServer2"  ng-disabled="consult" ng-model="candidateSqlServer" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineSqlServer" id="inlineSqlServer3" ng-disabled="consult" ng-model="candidateSqlServer" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineSqlServer" id="inlineSqlServer4" ng-disabled="consult" ng-model="candidateSqlServer" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineSqlServer" id="inlineSqlServer5" ng-disabled="consult" ng-model="candidateSqlServer" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">My SQL *</label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineMySql" id="inlineMySql1" ng-disabled="consult" ng-model="candidateMySql" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineMySql" id="inlineMySql2" ng-disabled="consult" ng-model="candidateMySql" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineMySql" id="inlineMySql3" ng-disabled="consult" ng-model="candidateMySql" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineMySql" id="inlineMySql4" ng-disabled="consult" ng-model="candidateMySql" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineMySql" id="inlineMySql5" ng-disabled="consult" ng-model="candidateMySql" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">Salesforce *</label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineSalesforce" id="inlineSalesforce1" ng-disabled="consult" ng-model="candidateSalesforce" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineSalesforce" id="inlineSalesforce1" ng-disabled="consult" ng-model="candidateSalesforce" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineSalesforce" id="inlineSalesforce1" ng-disabled="consult" ng-model="candidateSalesforce" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineSalesforce" id="inlineSalesforce1" ng-disabled="consult" ng-model="candidateSalesforce" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineSalesforce" id="inlineSalesforce1" ng-disabled="consult" ng-model="candidateSalesforce" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">Photoshop *</label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlinePhotoshop" id="inlinePhotoshop1" ng-disabled="consult" ng-model="candidatePhotoshop" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlinePhotoshop" id="inlinePhotoshop2" ng-disabled="consult" ng-model="candidatePhotoshop" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlinePhotoshop" id="inlinePhotoshop3" ng-disabled="consult" ng-model="candidatePhotoshop" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlinePhotoshop" id="inlinePhotoshop4" ng-disabled="consult" ng-model="candidatePhotoshop" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlinePhotoshop" id="inlinePhotoshop5" ng-disabled="consult" ng-model="candidatePhotoshop" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">Photoshop *</label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineIllustratos" id="inlineIllustratos1" ng-disabled="consult" ng-model="candidateIllustrator" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineIllustratos" id="inlineIllustratos2" ng-disabled="consult" ng-model="candidateIllustrator" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineIllustratos" id="inlineIllustratos3" ng-disabled="consult" ng-model="candidateIllustrator" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineIllustratos" id="inlineIllustratos4" ng-disabled="consult" ng-model="candidateIllustrator" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineIllustratos" id="inlineIllustratos5" ng-disabled="consult" ng-model="candidateIllustrator" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 150px;">
+                                                            <label for="skill">SEO *</label>
+                                                        </td>
+                                                        <td>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineSEO" id="inlineSEO1" ng-disabled="consult" ng-model="candidateSEO" ng-value="1" required> 1
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineSEO" id="inlineSEO2" ng-disabled="consult" ng-model="candidateSEO" ng-value="2" required> 2
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineSEO" id="inlineSEO3" ng-disabled="consult" ng-model="candidateSEO" ng-value="3" required> 3
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineSEO" id="inlineSEO4" ng-disabled="consult" ng-model="candidateSEO" ng-value="4" required> 4
+                                                            </label>
+                                                            <label class="radio-inline">
+                                                                <input type="radio" name="inlineSEO" id="inlineSEO5" ng-disabled="consult" ng-model="candidateSEO" ng-value="5" required> 5
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <label for="crud">Link do CRUD </label>
+                                                <input type="text" class="form-control" id="inputCrud" placeholder="link" ng-disabled="consult" ng-model="candidateCrud">
+                                                <div class="text-center" style="margin-top:10px">
+                                                    <input type="submit" id="btnSave" class="form-control  btn-success" ng-disabled="consult"  value="Cadastrar" />
+                                                </div>
+                                            </div>
+                                        </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        </div>
+
+                    </div>
+                </div>
+                @Html.Hidden("CandID_")
+
+            </div>  
